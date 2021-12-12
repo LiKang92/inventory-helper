@@ -1,8 +1,12 @@
+import { Button } from 'antd'
 
-
-function App() {
+const App = () => {
   return (
-    <h1>???</h1>
+    <h1>
+      <Button
+        type="primary"
+      >First button</Button>
+    </h1>
   );
 }
 
