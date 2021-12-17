@@ -2,6 +2,7 @@ import React from 'react'
 import './login.less'
 
 const Login = () => {
+  console.log('test');
   return (
       <header>
         <img src='' alt='' />
@@ -11,3 +12,4 @@ const Login = () => {
 }
 
 export default Login
+
