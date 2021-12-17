@@ -1,12 +1,13 @@
 import React from 'react'
 import './login.less'
 
-export const Login = () => {
+const Login = () => {
   return (
-    <div>
       <header>
-        
-      </header>
-    </div>
+        <img src='' alt='' />
+        <h1>Invenroty-Helper</h1>
+      </header> 
   )
 }
+
+export default Login
