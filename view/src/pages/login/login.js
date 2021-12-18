@@ -8,12 +8,34 @@ const Login = ({ form }) => {
 
   const getFieldDecorator = form.getFieldDecorator
   //不能用箭头
-  function handleSubmit() {
-
+  function handleSubmit(event) {
+    //阻止默认事件--禁止form表单提交--通过ajax提交
+    event .preventDefault();
+    form.validateFields((err, values) => {
+      if (!err) {
+        console.log('Received values of form: ', values);
+      }
+    });
   }
 
   function testClick() {
     console.log(getFieldDecorator);
+  }
+
+  // 验证器式验证，与之相对的是声明式
+  function pwdValidator(rule, value, callback) {
+    if(!value){
+      callback('password cannot be empty')
+    }else if(value.length < 4){
+      callback('password must longer then 4 digis')
+    }else if(value.length > 12){
+      callback('password must less then 12 digits')
+    } else if (!(/^\w+$/).test(value)){
+      callback('password must contains number, alphbets, underscore')
+    }else{
+      callback()
+      // callback 方法必须被调用，即使一切顺利通过验证也要调用，这是规定
+    }
   }
 
 
@@ -47,7 +69,7 @@ const Login = ({ form }) => {
           </Item>
           <Item>
             {getFieldDecorator('password', {
-              rules: [{ required: true, message: 'Please input your Password!' }],
+              rules: [{ validator : pwdValidator }],
             })(
               <Input
                 prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
